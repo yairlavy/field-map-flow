@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">field-map-flow</string>
+    <string name="title_activity_main">field-map-flow</string>
+    <string name="package_name">com.yairlavy.fieldmapflow</string>
+    <string name="custom_url_scheme">com.yairlavy.fieldmapflow</string>
+</resources>
