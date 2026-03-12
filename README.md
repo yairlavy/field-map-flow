@@ -1,39 +1,132 @@
-**Welcome to your Base44 project** 
+# Field Map Flow
 
-**About**
+This repository contains the **Field Map Flow** application, a mobile/web hybrid built with React, Capacitor, and Tailwind CSS.
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+## 🚀 Project Overview
 
-This project contains everything you need to run your app locally.
+Field Map Flow is designed for census field data collection. The app allows users to:
 
-**Edit the code in your local development environment**
+1. **Create and manage households** with detailed information.
+2. **Add and edit people records** linked to households.
+3. **Capture photos** using the device camera.
+4. **Export and synchronize data** with a backend service.
+5. **Install as a standalone mobile or PWA app** via Capacitor.
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+The interface is built with a custom component library (in `src/components/ui`) inspired by Radix/Headless UI, styled with Tailwind CSS. Data persistence is handled locally using SQLite via `src/components/db` modules, with operations exposed through custom hooks and utilities.
 
-**Prerequisites:** 
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+## 🏗️ Tech Stack
+
+- **Framework:** React (JSX/JS)
+- **Bundler:** Vite
+- **Mobile Integration:** Capacitor (Android directory included)
+- **Styling:** Tailwind CSS
+- **State & Data:** React hooks, context (`AuthContext.jsx`), and a local SQLite database
+- **API layer:** `src/api/base44Client.js` for backend communication
+- **Utilities:** `src/lib/utils.js`, `src/hooks/use-mobile.jsx`, etc.
+
+
+## 📁 Repository Structure
 
 ```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
+src/
+  App.jsx                  # Root component
+  main.jsx                 # Vite entry point
+  components/              # Reusable React components
+    census/                # Census-specific UI components
+    db/                    # Database helpers (database.jsx, exportOps.jsx, etc.)
+    ui/                    # Shared UI primitives (button, modal, table, etc.)
+  hooks/                   # Custom hooks
+  lib/                     # Context providers and helper modules
+  pages/                   # Route components (AddPerson.jsx, Home.jsx, etc.)
+  utils/                   # TypeScript utilities
 
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
+android/                   # Capacitor Android project (auto-generated)
+
+package.json              # dependencies & scripts
+vite.config.js            # Vite configuration
+tailwind.config.cjs       # Tailwind setup
+
+README.md                 # this file
 ```
 
-Run the app: `npm run dev`
 
-**Publish your changes**
+## 🧩 Getting Started
 
-Open [Base44.com](http://Base44.com) and click on Publish.
+### Prerequisites
 
-**Docs & Support**
+1. **Node.js** (>= 16) and **npm** or **yarn**
+2. **Java JDK** for Android builds
+3. **Android Studio** if you plan to run on an emulator/device
 
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
+### Local Development
 
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+```bash
+# clone the repo
+git clone <repo-url>
+cd field-map-flow
+
+# install dependencies
+npm install
+
+# create environment file for configuration
+cp .env.example .env.local
+# or manually create .env.local with the following:
+# VITE_BASE44_APP_ID=<your_app_id>
+# VITE_BASE44_APP_BASE_URL=<your_backend_url>
+
+# start development server
+npm run dev
+```
+
+The app will be available at `http://localhost:5173` by default. Any code changes will trigger HMR.
+
+### Running on Android
+
+```bash
+# build and open Android project
+npm run build
+npx cap sync android
+npx cap open android
+```
+
+From Android Studio you can run the app on an emulator or connected device.
+
+
+## ✅ Key Features
+
+- Household CRUD operations with link to persons
+- Person CRUD with biometric/camera photo capture
+- Local database with export to file or remote API
+- Responsive layout for desktop and mobile
+- Installable as PWA or native via Capacitor
+
+
+## 📦 Publishing & Deployment
+
+### Web/PWA
+
+1. Build the production bundle: `npm run build`
+2. Host the `dist/` directory on any static file server (Netlify, Vercel, S3, etc.)
+3. Ensure environment variables are set appropriately.
+
+### Android
+
+Follow the Capacitor docs to generate a signed APK or AAB from Android Studio.
+
+
+## 📘 Documentation & Support
+
+- React: https://reactjs.org/
+- Vite: https://vitejs.dev/
+- Capacitor: https://capacitorjs.com/docs
+- Tailwind CSS: https://tailwindcss.com/docs
+
+For project-specific documentation refer to the code in `src/` and the inline comments.
+
+If you encounter issues, please open an issue in this repository or contact the maintainer.
+
+
+---
+
+*This README was last updated on March 12, 2026.*
